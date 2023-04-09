@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import GridFlatList from 'grid-flatlist-react-native';//SE DEBE INSTALAR******
 import styles from './selectoption.style'
 import { SIZES } from '../../../constants';
-import PopularJobCard from '../../common/cards/selectOption/SelectOptionCard';
+import SelectOptionCard from '../../common/cards/selectOption/SelectOptionCard';
 
 const Selectoption = () => {
 
@@ -16,7 +16,7 @@ const Selectoption = () => {
         <GridFlatList
           data={[1, 2, 3]}
           renderItem={() => (
-            <PopularJobCard
+            <SelectOptionCard
             />
           )}
           contentContainerStyle={{ columnGap: SIZES.small }}
