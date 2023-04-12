@@ -1,11 +1,14 @@
 import { useState } from 'react';
+
 import { View, ScrollView, SafeAreaView } from 'react-native';
-import { Stack } from 'expo-router';
+import { Link, Stack, useRouter } from 'expo-router';
 import { COLORS, images, SIZES } from '../constants';
 import { SelectOption, ScreenHeaderBtn, Welcome } from '../components';
-
+import searchCharacters from './search/[search]';
+import { Router, Route } from 'expo-router';
 const Home = () => {
     const [searchTerm, setSearchTerm] = useState("");
+    const router = useRouter();
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
             <Stack.Screen
@@ -28,7 +31,8 @@ const Home = () => {
                     <Welcome
                         searchTerm={searchTerm}
                         setSearchTerm={setSearchTerm}
-                        handleClick={() => {}}
+                        handleClick={() => {
+                            }}
                     />
                     <SelectOption />
                 </View>
