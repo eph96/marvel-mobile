@@ -1,9 +1,12 @@
 import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import styles from './welcome.style';
+import { Stack, useRouter } from 'expo-router';
 import { icons } from '../../../constants';
+import { useState } from 'react';
 
 const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
-
+  const router = useRouter()
+  const [search, setSearch] = useState("/search/[search]");
   return (
     <View>
       <View style={styles.container}>
@@ -21,7 +24,12 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
           />
         </View>
 
-        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
+        <TouchableOpacity style={styles.searchBtn} onPress={()=>{
+          router.push({
+            pathname: `${search}`,
+            params: {parametro: searchTerm, busqueda: "characters"},
+        })
+        }}>
           <Image
             source={icons.search}
             resizeMode='contain'

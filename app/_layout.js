@@ -2,6 +2,8 @@ import { Stack } from 'expo-router';
 import { useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { COLORS, icons, images } from '../constants';
+import { ScreenHeaderBtn } from '../components';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -20,7 +22,16 @@ const Layout = () => {
 
     if(!fontsLoaded) return null;
 
-    return <Stack onLayoutRootView={onLayoutRootView} />;
+    return <Stack onLayoutRootView={onLayoutRootView}
+            screenOptions={{
+                headerStyle:{
+                    backgroundColor: COLORS.darkblue,
+                },
+                headerTintColor: COLORS.lightWhite,
+                headerShadowVisible: false,
+                headerRight: () => <ScreenHeaderBtn iconUrl={images.marvel}/>,
+            }}
+    />;
 }
 
 export default Layout;
