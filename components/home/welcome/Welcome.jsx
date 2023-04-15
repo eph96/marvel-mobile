@@ -3,12 +3,19 @@ import styles from './welcome.style';
 import { Stack, useRouter } from 'expo-router';
 import { icons } from '../../../constants';
 import { useState } from 'react';
+import Login from "../../Login/Login"; 
 
 const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
   const router = useRouter()
   const [search, setSearch] = useState("/search/[search]");
   return (
+
+
     <View>
+
+      <View>
+        <Login/>
+      </View>
       <View style={styles.container}>
         <Text style={styles.welcomeMessage} >Welcome!</Text>
         <Text style={styles.about} >Find all about comics, characters, and creators</Text>
