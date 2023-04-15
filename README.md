@@ -3,10 +3,11 @@
 Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
 
 ## 🚀 How to use
-## install dependeces npm install expo-random, npx expo install expo-web-browser, npx expo install expo-auth-session.
+
 
 ```sh
 npx create-react-native-app -t with-router
+install dependeces npm install expo-random, npx expo install expo-web-browser, npx expo install expo-auth-session.
 ```
 
 ## 📝 Notes
