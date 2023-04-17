@@ -13,9 +13,7 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
 
     <View>
 
-      <View>
-        <Login/>
-      </View>
+      
       <View style={styles.container}>
         <Text style={styles.welcomeMessage} >Welcome!</Text>
         <Text style={styles.about} >Find all about comics, characters, and creators</Text>
