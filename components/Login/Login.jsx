@@ -1,85 +1,73 @@
-
-import * as React from 'react';
+import React from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ImageBackground, Animated } from 'react-native';
 import { images } from '../../constants';
-import { Stack, useRouter } from 'expo-router';
-
-
-import Principal from '../../app/Principal/Principal';
-import Welcome from '../home/welcome/Welcome';
 
 
 
+// web 985040084009-o5v5p3558didn0fs7iigt90q8eh3e6no.apps.googleusercontent.com
+// iOS  985040084009-09davhgahflmktpmihnvhupac5gjvn9i.apps.googleusercontent.com
+//android 985040084009-ji5s7gmbr171iqi7j08pm08hudoapduh.apps.googleusercontent.com
 WebBrowser.maybeCompleteAuthSession();
 
-export default function Login({searchTerm}) {
-  const router = useRouter()
-  const [accessToken, setAccessToken] = React.useState(null);
-  const [user, setUser] = React.useState(null);
-  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId: "850212836430-lqnh8ndf4osq2r89joclapi8if7nr7a1.apps.googleusercontent.com",
-    iosClientId: "850212836430-4r7ec7p7lan5rm7hjme9uf2vli886mrl.apps.googleusercontent.com",
-    androidClientId: "850212836430-ptoisajvb4nfg9qil7e73060ltujhhdp.apps.googleusercontent.com"
-  });
 
-  React.useEffect(() => {
-    if(response?.type === "success") {
-      const {id_token} = response.params;
-      setAccessToken(id_token);
-      accessToken && fetchUserInfo();
-    }
-  }, [response, accessToken])
 
-  async function fetchUserInfo() {
-    let response = await fetch("https://www.googleapis.com/userinfo/v2/me", {
-      headers: { Authorization: `Bearer ${accessToken}` }
+export const Login = () => {
+    const router = useRouter();
+    const [accessToken, setAccessToken] = React.useState(null);
+    const [user, setUser] = React.useState(null);
+    const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+        clientId: "1069574156631-l29dud4ccd5t16r7bov05k8udd24bl5b.apps.googleusercontent.com",
+        iosClientId: "1069574156631-nfv8ipjudkpf4i43grgmdje4bdjci8dp.apps.googleusercontent.com",
+        androidClientId: "1069574156631-aopmnmpt3kqkev521vvo9vi9o8vgrv8r.apps.googleusercontent.com"
     });
-    const useInfo = await response.json();
-    setUser(useInfo);
-  }
 
-  const ShowUserInfo = () => {
-    if(user) {
-      return(
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text style={{fontSize: 35, fontWeight: 'bold', marginBottom: 20}}>Welcome</Text>
-          <Text style={{fontSize: 35, fontWeight: 'bold', marginBottom: 20}}>Toca aquí para ir a la pagina principal</Text>
-          <Image source={{uri: user.picture}} style={{width: 100, height: 100, borderRadius: 50}} />
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>{user.name}</Text>
-        </View>
-      )
+    React.useEffect(() => {
+        if (response?.type === 'success') {
+            const { id_token } = response.params;
+            setAccessToken(id_token);
+            accessToken && fetchUserInformation();
+           
+        }
+    }, [response, accessToken]);
+
+    // no es necesaria
+    async function fetchUserInformation() {
+        let response = await fetch('https://www.googleapis.com/userinfo/v2/me', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        const userInfo = await response.json();
+        setUser(userInfo);
     }
-  }  
 
-  return (
-    <View style={styles.container}>
-      {user ==! null ? <Welcome />:console.log("hola")}
-
-      {user === null &&
-          <>
-          <Text style={{fontSize: 35, fontWeight: 'bold'}}>Welcome</Text>
+    return (
+        <View style={styles.container}>
+            
+                {user === null &&
+                    <>
+                        <Text style={{fontSize: 35, fontWeight: 'bold'}}>Welcome</Text>
           <Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 20, color: 'gray'}}>Please login</Text>
         <TouchableOpacity
           disabled={!request}
           onPress={() => {
             promptAsync();
+            
             }} 
         >
-          <Image source={images.marvel} style={{width: 300, height: 40 } } resizeMode='contain' />
+         <Image source={images.marvel} style={{width: 300, height: 40 } } resizeMode='contain' />
         </TouchableOpacity>
-        </>
-      }
-    </View>
-  );
-}
+                    </>
+                }
+           
+        </View>
+    )
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
+    },
+    
 });

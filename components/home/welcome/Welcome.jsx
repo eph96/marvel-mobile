@@ -12,8 +12,8 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
 
 
     <View>
+     
 
-      
       <View style={styles.container}>
         <Text style={styles.welcomeMessage} >Welcome!</Text>
         <Text style={styles.about} >Find all about comics, characters, and creators</Text>
@@ -32,7 +32,7 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
         <TouchableOpacity style={styles.searchBtn} onPress={()=>{
           router.push({
             pathname: `${search}`,
-            params: {parametro: searchTerm, busqueda: "characters"},
+            params: {parametro: searchTerm, busqueda: "comics"},
         })
         }}>
           <Image

@@ -1,11 +1,7 @@
 {
   "expo": {
     "scheme": "acme",
-    "web": {
-      "bundler": "metro",
-      "favicon": "./assets/favicon.png"
-
-    },
+    "owner":"josuecr",
     "name": "mi",
     "slug": "mi",
     "version": "1.0.0",
@@ -25,13 +21,23 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.test.marvelApp"
+      "bundleIdentifier": "com.test.mi"
     },
     "android": {
-      "package": "com.test.marvelApp",
+      "package": "com.test.mi",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1a97e4f3-4cdd-4be1-9443-79a7c5445087"
       }
     }
 
